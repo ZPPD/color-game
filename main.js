@@ -6,8 +6,24 @@ var colorDisplay = document.getElementById('colorDisplay');
 var pickedColor = pickColor();
 var messageDisplay = document.querySelector('#message');
 var h1 = document.querySelector('h1');
+var resetBtn = document.querySelector('#reset');
 
 colorDisplay.textContent = pickedColor;
+
+resetBtn.addEventListener('click', function(){
+    
+    //generate all new colors
+    colors = generateRandomColors(6);
+    //pick new random colors
+    pickedColor = pickColor();
+    //change color display to match picked color
+    colorDisplay.tectContent = pickedColor;
+    //change colors of quare
+    for(var i = 0; i < squares.length; i++){
+        squares[i].style.backgroundColor = colors[i];
+    }
+    h1.style.backgroundColor = '#232323';
+});
 
 for(var i = 0; i < squares.length; i++){
     //add initial colors to squares
@@ -20,6 +36,7 @@ for(var i = 0; i < squares.length; i++){
         //compare color to pickedColor 
         if(clickedColor === pickedColor){
             messageDisplay.textContent = 'Correct!';
+            resetBtn.textContent = 'Play Again?';
             changeColors(clickedColor);
             h1.style.backgroundColor = clickedColor;
         } else {
